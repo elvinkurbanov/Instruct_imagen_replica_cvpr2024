@@ -1,0 +1,55 @@
+1. Text → Image (T2I):
+
+python3 main_mps.py t2i \
+  --prompt "a cute cat with iphone playing " \
+  --model runwayml/stable-diffusion-v1-5 \
+  --steps 20 \
+  --cfg 7.0 \
+  --height 512 \
+  --width 512 \
+  --output outputs/dog_t2i.png
+
+2. ControlNet Image→Image:
+
+python3 main_mps.py img2img_cn \
+  --prompt "turn this into a futuristic winter" \
+  --input_image examples/nature.jpg \
+  --auto_canny \
+  --canny_low 100 \
+  --canny_high 200 \
+  --steps 20 \
+  --cfg 7.0 \
+  --strength 0.7 \
+  --output outputs/nature_img2img_cn.png
+
+3. ControlNet T2I Text→Image:
+
+python3 main_mps.py t2i_cn \
+  --prompt "a futuristic winter city at night" \
+  --model runwayml/stable-diffusion-v1-5 \
+  --controlnet_model lllyasviel/control_v11p_sd15_canny \
+  --control_image examples/city.jpg \
+  --auto_canny \
+  --canny_low 100 \
+  --canny_high 200 \
+  --height 512 \
+  --width 512 \
+  --steps 20 \
+  --cfg 7.0 \
+  --output outputs/city_t2i_cn.png
+
+
+4. InstructPix2Pix Editing:
+
+python3 main_mps.py edit \
+  --instruction "make the person look like anime" \
+  --input_image examples/person.jpg \
+  --steps 40 \
+  --cfg 7.0 \
+  --img_guidance 1.5 \
+  --seed 42 \
+  --output outputs/person_anime.png
+
+
+
+
